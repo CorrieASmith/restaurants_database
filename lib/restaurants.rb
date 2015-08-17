@@ -10,4 +10,16 @@ class Restaurant
   define_method(:==) do |other|
     self.name() == other.name && self.location == other.location && self.phone == other.phone
   end
+
+  define_singleton_method(:all) do
+    results = DB.exec("SELECT * FROM restaurants;")
+    restaurants = []
+    results.each() do |result|
+      name = result.fetch("name")
+      location = result.fetch("location")
+      phone = result.fetch("phone")
+      restaurants.push(Restaurant.new({:name => name, :location => location, :phone => phone}))
+    end
+    restaurants
+  end
 end

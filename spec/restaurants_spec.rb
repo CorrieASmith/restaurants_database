@@ -9,4 +9,10 @@ describe(Restaurant) do
       expect(restaurant1).to(eq(restaurant2))
     end
   end
+
+  describe('.all') do
+    it("is empty at first") do
+      expect(Restaurant.all()).to(eq([]))
+    end
+  end
 end
