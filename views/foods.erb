@@ -1,0 +1,11 @@
+<% results = DB.exec("SELECT * FROM food;") %>
+<% food = [] %>
+<% results.each() do |result| %>
+  <% type = result.fetch("type") %>
+  <% cost = result.fetch("cost") %>
+  <% rating = result.fetch("rating") %>
+  <% food.push(Food.new({:type => type, :cost => cost, :rating => rating, :restaurant_id => @restaurant_id})) %>
+<% end %>
+
+<a href="/restaurants/<% @id %>" class="btn btn-primary btn-lg active" role="button">View Food</a>
+<a href="/restaurants/<% @id %>/forms" class="btn btn-default btn-lg active" role="button">Add Food</a>
