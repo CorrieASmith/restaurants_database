@@ -22,7 +22,7 @@ class Food
   end
 
   define_method(:save) do
-    result = DB.exec("INSERT INTO food (type, cost, rating, restaurant_id) VALUES ('#{@type}', #{@cost}, #{@rating}, #{@restaurant_id}) RETURNING id;")
+    result = DB.exec("INSERT INTO food (type, cost, rating, restaurant_id) VALUES ('#{@type}', #{@cost}, #{@rating}, #{@restaurant_id});")
   end
 
   define_method(:==) do |other|

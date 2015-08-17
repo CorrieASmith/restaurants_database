@@ -23,4 +23,14 @@ describe(Restaurant) do
       expect(Restaurant.all).to(eq([restaurant]))
     end
   end
+
+  describe('#food') do
+    it("displays the food in a restaurant") do
+      restaurant = Restaurant.new({:name => 'Sinju Sushi', :location => 'Clackamas', :phone => '777-777-7777', :id => 4})
+      restaurant.save()
+      food = Food.new({:type => "Sushi", :cost => 16, :rating => 5, :restaurant_id => restaurant.id()})
+      food.save()
+      expect(restaurant.food()).to(eq([food]))
+    end
+  end
 end

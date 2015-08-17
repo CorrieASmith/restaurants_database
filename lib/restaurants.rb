@@ -29,4 +29,17 @@ class Restaurant
     results = DB.exec("INSERT INTO restaurants (name, location, phone) VALUES ('#{@name}', '#{@location}', '#{@phone}') RETURNING id;")
     @id = results.first().fetch('id').to_i()
   end
+
+  define_method(:food) do
+    results = DB.exec("SELECT * FROM food WHERE restaurant_id = '#{@id}';")
+    foods = []
+    results.each() do |result|
+      type = result.fetch("type")
+      cost = result.fetch("cost").to_i()
+      rating = result.fetch("rating").to_i()
+      restaurant_id = result.fetch("restaurant_id").to_i()
+      foods.push(Food.new({:type => type, :cost => cost, :rating => rating, :restaurant_id => restaurant_id}))
+    end
+    foods
+  end
 end
