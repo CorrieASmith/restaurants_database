@@ -10,3 +10,10 @@ DB = PG.connect({:dbname => 'my_restaurants_test'})
         DB.exec("DELETE FROM restaurants * ;")
   end
 end
+
+
+  RSpec.configure do |config|
+    config.after(:each) do
+      DB.exec("DELETE FROM food * ;")
+  end
+end
