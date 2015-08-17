@@ -4,8 +4,8 @@ describe(Restaurant) do
 
   describe('#==') do
     it("is the same restaurant if it has the same name") do
-      restaurant1 = Restaurant.new({:name => 'Chipotle', :location => 'Portland', :phone => '555-555-5555'})
-      restaurant2 = Restaurant.new({:name => 'Chipotle', :location => 'Portland', :phone => '555-555-5555'})
+      restaurant1 = Restaurant.new({:name => 'Chipotle', :location => 'Portland', :phone => '555-555-5555', :id => 1})
+      restaurant2 = Restaurant.new({:name => 'Chipotle', :location => 'Portland', :phone => '555-555-5555', :id => 2})
       expect(restaurant1).to(eq(restaurant2))
     end
   end
@@ -18,7 +18,7 @@ describe(Restaurant) do
 
   describe('#save') do
     it("saves a new restaurant") do
-      restaurant = Restaurant.new({:name => 'Blue C Sushi', :location => 'Seattle', :phone => '666-666-6666'})
+      restaurant = Restaurant.new({:name => 'Blue C Sushi', :location => 'Seattle', :phone => '666-666-6666', :id => 3})
       restaurant.save()
       expect(Restaurant.all).to(eq([restaurant]))
     end
