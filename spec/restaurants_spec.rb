@@ -15,4 +15,12 @@ describe(Restaurant) do
       expect(Restaurant.all()).to(eq([]))
     end
   end
+
+  describe('#save') do
+    it("saves a new restaurant") do
+      restaurant = Restaurant.new({:name => 'Blue C Sushi', :location => 'Seattle', :phone => '666-666-6666'})
+      restaurant.save()
+      expect(Restaurant.all).to(eq([restaurant]))
+    end
+  end
 end

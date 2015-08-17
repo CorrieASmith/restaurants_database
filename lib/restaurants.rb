@@ -22,4 +22,8 @@ class Restaurant
     end
     restaurants
   end
+
+  define_method(:save) do
+    results = DB.exec("INSERT INTO restaurants (name, location, phone) VALUES ('#{@name}', '#{@location}', '#{@phone}') RETURNING id;")
+  end
 end
