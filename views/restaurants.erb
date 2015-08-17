@@ -1,0 +1,17 @@
+<% @results = DB.exec("SELECT * FROM restaurants;") %>
+<% @restaurants = [] %>
+<% @results.each() do |result| %>
+  <% @name = result.fetch("name") %>
+  <% @location = result.fetch("location") %>
+  <% @phone = result.fetch("phone") %>
+  <% @id = result.fetch("id").to_i() %>
+  <% @restaurants.push(Restaurant.new({:name => @name, :location => @location, :phone => @phone, :id => @id})) %>
+<% end %>
+<% @restaurants.each() do |restaurant| %>
+<div class="container">
+  <a href='/restaurants/<%= restaurant.id %>'><p>Restaurant: <%= restaurant.name() %></p></a>
+  <p>Location: <%= restaurant.location() %></p>
+  <p>Phone: <%= restaurant.phone() %></p>
+  <hr>
+</div>
+<% end %>
